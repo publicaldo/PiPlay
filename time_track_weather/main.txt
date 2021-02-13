@@ -1,0 +1,89 @@
+Python 3.8.7 (tags/v3.8.7:6503f05, Dec 21 2020, 17:59:51) [MSC v.1928 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+>>> import requests
+
+>>> def get_now_playing():
+    url = f"192.168.178.167:81/api/track/metadata"
+    response = requests.get(url)
+    if not response.ok:
+        raise Exception(response.json()["message"])
+    body = response.json()
+    print(body)
+
+>>> def get_now_playing():
+    url = f"http://192.168.178.167:81/api/track/metadata"
+    response = requests.get(url)
+    if not response.ok:
+        raise Exception(response.json()["message"])
+    body = response.json()
+    print(body)
+
+    
+>>> get_now_playing()
+{'artist': 'Peter Tosh', 'title': 'Downpressor Man', 'albumArtist': None, 'albumTitle': None, 'artUrl': None, 'externalArtUrl': None, 'discNumber': None, 'tracknumber': None, 'playerName': 'mpd', 'playerState': 'playing', 'streamUrl': 'http://stream.radioparadise.com/flacm', 'playCount': None, 'mbid': None, 'artistmbid': None, 'albummbid': None, 'loved': None, 'wiki': None, 'loveSupported': True, 'tags': [], 'skipped': False, 'host_uuid': None, 'releaseDate': None, 'trackid': None, 'hifiberry_cover_found': False, 'duration': 0, 'time': 0, 'position': 0, 'positionupdate': 1612984773.716766}
+
+
+>>> def get_weather(lat, lon, api_key, units="imperial"):
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={api_key}&units={units}"
+    response = requests.get(url)
+    if not response.ok:
+        raise Exception(response.json()["message"])
+    body = response.json()
+    return {
+        "current_temp": body["current"]["temp"],
+        "current_conditions": ", ".join(
+            [condition["main"] for condition in body["current"]["weather"]]
+        ),
+        "forecast": [(day["temp"]["max"], day["temp"]["min"]) for day in body["daily"]][
+            :3
+        ],  # > [(279.4, 273.15), (279.4, 273.15)]
+    }
+
+>>> API_KEY = "13cd0998435bbe45bf1c548c70384176"
+LOCATION = "Munich"
+LATITUDE = "48.137154"
+LONGITUDE = "11.576124"
+SyntaxError: multiple statements found while compiling a single statement
+>>> API_KEY = "13cd0998435bbe45bf1c548c70384176"
+>>> LOCATION = "Munich"
+>>> LATITUDE = "48.137154"
+>>> LONGITUDE = "11.576124"
+>>> 
+3 day
+def get_weather(lat, lon, api_key, units="imperial"):
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={api_key}&units={units}"
+    response = requests.get(url)
+    if not response.ok:
+        raise Exception(response.json()["message"])
+    body = response.json()
+    return {
+        "current_temp": body["current"]["temp"],
+        "current_conditions": ", ".join(
+            [condition["main"] for condition in body["current"]["weather"]]
+        ),
+        "forecast": [(day["temp"]["max"], day["temp"]["min"]) for day in body["daily"]][
+            :3
+        ],  # > [(279.4, 273.15), (279.4, 273.15)]
+    }
+
+
+>>> get_weather(48.137154,11.576124,'13cd0998435bbe45bf1c548c70384176',"imperial")
+{'current_temp': 22.86, 'current_conditions': 'Snow', 'forecast': [(33.17, 20.68), (22.93, 12.09), (24.42, 14.54)]}
+
+1 day
+def get_weather(lat, lon, api_key, units="imperial"):
+    url = f"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&appid={api_key}&units={units}"
+    response = requests.get(url)
+    if not response.ok:
+        raise Exception(response.json()["message"])
+    body = response.json()
+    return {
+        "current_temp": body["current"]["temp"],
+        "current_conditions": ", ".join(
+            [condition["main"] for condition in body["current"]["weather"]]
+        ),
+        "forecast": [(day["temp"]["max"], day["temp"]["min"]) for day in body["daily"]][
+            :1
+        ],  # > [(279.4, 273.15), (279.4, 273.15)]
+    }
