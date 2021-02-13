@@ -1,2 +1,2 @@
 # PiPlay
- Pi music player nad dashboard play
+ Pi music player and dashboard play
