@@ -21,7 +21,7 @@ Country = "DE"
 LATITUDE = "48.137154"
 LONGITUDE = "11.576124"
 
-def get_weather_tailored():
+def get_weather():
     url = f"https://api.openweathermap.org/data/2.5/onecall?lat={LATITUDE}&lon={LONGITUDE}&appid={API_KEY}&units={'imperial'}"
     response = requests.get(url)
     if not response.ok:
@@ -33,28 +33,12 @@ def get_weather_tailored():
             [condition["main"] for condition in body["current"]["weather"]]
         ),
         "forecast": [(day["temp"]["max"], day["temp"]["min"]) for day in body["daily"]][
-            :3
+            :2
         ],  # > [(279.4, 273.15), (279.4, 273.15)]
     }
 
 
-def get_weather_city():
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units={'imperial'}"
-    response = requests.get(url)
-    if not response.ok:
-        raise Exception(response.json()["message"])
-    body = response.json()
-    return body
-        
 def get_now_playing():
-    url = f"http://192.168.178.167:81/api/track/metadata"
-    response = requests.get(url)
-    if not response.ok:
-        raise Exception(response.json()["message"])
-    body = response.json()
-    return body
-
-def get_now_playing_short():
     url = f"http://192.168.178.167:81/api/track/metadata"
     response = requests.get(url)
     if not response.ok:
@@ -74,7 +58,7 @@ def get_now_playing_short():
 ##    update date section
 ##1 hour weather loop
 ##    Get weather
-print(get_weather_tailored())
+print(get_weather())
 print()
 ##    update weather section
 ##1 minute time loop
