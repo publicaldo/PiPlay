@@ -1,0 +1,36 @@
+Playing radio stream (radio paradise; KCRW/Linn same) 
+playerName=mpd
+icon /extensions/radio/symbols-black/radio.svg
+artist and title are good
+
+{
+	'artist': 'Thievery Corporation', 	'title': 'Doors Of Perception (Feat Gunjan)', 	'albumArtist': None, 	'albumTitle': None,
+	'artUrl': None, 	'externalArtUrl': 'https://lastfm.freetls.fastly.net/i/u/300x300/58f5241c425749f0b8c1d1db87a600f0.png', 	'discNumber': None, 	'tracknumber': None, 	'playerName': 'mpd', 	'playerState': 'playing', 	'streamUrl': 'http://stream.radioparadise.com/world-etc-flacm', 	'playCount': '1', 	'mbid': '2b531c8e-f6a4-4899-a937-763506d88114', 	'artistmbid': 'a505bb48-ad65-4af4-ae47-29149715bff9', 	'albummbid': '91af6753-4ef5-46b3-9fed-f51f1af23302',	''loved': False, 	'wiki': None, 	'loveSupported': True, 	'tags': ['trip hop','electronic','downtempo','downbeat','chillout','chill'],
+	'skipped': False,
+	'host_uuid': '2d963d2c-8b72-4a6c-8eee-2cd4ea9900a6',
+	'releaseDate': '2005-02-22',
+	'trackid': None,
+	'hifiberry_cover_found': True,
+	'duration': 0,
+	'time': 0,	''position': 0,
+	'positionupdate': 1613223232.6835873}
+	
+Playing music through airplay (AppleMusic)
+playerName=ShairportSync
+icon /extensions/shairport-sync/symbols-black/airplay.svg
+artist, title,albumArtist, and albumTitle are good
+
+{
+	'artist': 'The Coryells',	'title': 'Love and Happiness',	'albumArtist': None,	'albumTitle': 'Chesky Records 10 Best',	'artUrl': 'artwork/-tmp-shairport-sync-.cache-coverart-cover-8ef325190d06a643c305b1fafd031841.jpg',	'externalArtUrl': 'https://lastfm.freetls.fastly.net/i/u/300x300/83d08059a4110aebfb194b5bf4420af7.png',	'discNumber': None,	'tracknumber': None,	'playerName': 'ShairportSync',	'playerState': 'playing',	'streamUrl': None,	'playCount': '2',	'mbid': 'e64cc2f2-22a5-4dc4-89c3-6ce3b9ab5df5',	'artistmbid': '13d648ce-390d-4b9d-b200-ede7c665d78b',	'albummbid': 'a6b88419-1db7-41ee-b2b0-efc8ca8960a9',	'loved': False,	'wiki': None,	'loveSupported': True,	'tags': [],	'skipped': False,	'host_uuid': '2d963d2c-8b72-4a6c-8eee-2cd4ea9900a6',	'releaseDate': None,	'trackid': None,	'hifiberry_cover_found': True,	'duration': 0,	'time': 0,	'position': 0,	'positionupdate': 1613225166.790971,	'trackId': '/org/gnome/ShairportSync/4F83CB6A95823C9B',	'albumartist': 'The Coryells'}
+	
+Playing Netflix through Airplay
+playerName=ShairportSync
+title is episode
+
+{
+	'artist': None,	'title': 'Tan Men',	'albumArtist': None,	'albumTitle': None,	'artUrl': 'artwork/-tmp-shairport-sync-.cache-coverart-cover-473e19f108513d3e4fe50b55aeef3a64.jpg',	'externalArtUrl': None,	'discNumber': None,	'tracknumber': None,	'playerName': 'ShairportSync',	'playerState': 'stopped',	'streamUrl': None,	'playCount': None,	'mbid': None,	'artistmbid': None,	'albummbid': None,	'loved': None,	'wiki': None,	'loveSupported': True,	'tags': [],	'skipped': False,	'host_uuid': None,	'releaseDate': None,	'trackid': None,	'hifiberry_cover_found': False,	'duration': 0,	'time': 0,	'position': 0,	'positionupdate': 1613226007.5817075,	'trackId': '/org/gnome/ShairportSync/6213A5DB'}
+
+
+Bluetooth
+/extensions/bluetooth/symbols-black/bluetooth.svg
+like airplay, except it prrovides bluetooth source.  Maybe this is the "if not"?
