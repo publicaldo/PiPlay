@@ -33,56 +33,57 @@ def get_weather():
     if not response.ok:
         raise Exception(response.json()["message"])
     body = response.json()
+# this text works, but is a bit clumsy?
     current_temp = round(body["current"]["temp"])
-    current_conditions = [condition["main"] for condition in body["current"]["weather"]]
+    current_conditions = [condition["main"] for condition in body["current"]["weather"]] # I'd like to return a link to the icon?  or specific font character for font.
     hi_today = [round(day["temp"]["max"]) for day in body["daily"]][:1]
     lo_today = [round(day["temp"]["min"]) for day in body["daily"]][:1]
     hi_tomorrow = [round(day["temp"]["max"]) for day in body["daily"]][1:2]
     lo_tomorrow = [round(day["temp"]["max"]) for day in body["daily"]][1:2]
-#    conditions_tomorrow = [condition["main"] for condition in body["daily"]][1:2]
+#     conditions_tomorrow = [condition["main"] for condition in body["daily"]][1:2] # don't know how to get tomorrow's conditions
     return current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow
 
 def get_now_playing():
-    url = f"http://192.168.178.167:81/api/track/metadata"
+    url = f"http://hifiberry.local:81/api/track/metadata"
     response = requests.get(url)
     if not response.ok:
         raise Exception(response.json()["message"])
-    body = response.json()
+    body=response.json()
     title = body['title']
     artist = body['artist']
-#  show icon for player source
+    releaseDate = body['releaseDate']
     playerName = body['playerName']
-    return title, artist, playerName
-
+    return title, artist, releaseDate, playerName
 
 #Daily calendar loop
 #    get formatted date
 #    update date section
-print(get_date())
+current_date=get_date()
+print(current_date)
 
 #1 hour weather loop
 #    Get weather
 #    update weather section
-print(get_weather())
+(current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow)=get_weather()
+print(current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow) # Why are some in brackets, some in quotes?
 
 #1 minute time loop
 #    get formatted time
 #    update time section
-print(get_time())
-
+current_time=get_time()
+print(current_time)
 
 #5 second now playing loop
 #    get now playing
 #    check if new
 # artist, title should be enough 
 #   print(title)
-print(get_now_playing())
-
-
-
+(title, artist, releaseDate, playerName)=get_now_playing()
+# check for delta in title, artist, if yes, 
+print(title,"|", artist,"|", releaseDate,"|", playerName)
+# if(releaseDate') = "none", releaseDate=""
 
 # example timing and control loop from Pythn turtle clock example
-
 #def tick():
 #    t = datetime.today()
 #    second = t.second + t.microsecond*0.000001
