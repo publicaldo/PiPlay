@@ -1,7 +1,6 @@
 import sys
 sys.path.append("lib")
-# pi only:
-# from waveshare_epd import epd4in2_V2
+# from waveshare_epd import epd4in2_V2 # pi only:
 import os
 from datetime import datetime
 import requests
@@ -35,11 +34,11 @@ def get_weather():
     body = response.json()
 # this text works, but is a bit clumsy?
     current_temp = round(body["current"]["temp"])
-    current_conditions = [condition["main"] for condition in body["current"]["weather"]] # I'd like to return a link to the icon?  or specific font character for font.
-    hi_today = [round(day["temp"]["max"]) for day in body["daily"]][:1]
-    lo_today = [round(day["temp"]["min"]) for day in body["daily"]][:1]
-    hi_tomorrow = [round(day["temp"]["max"]) for day in body["daily"]][1:2]
-    lo_tomorrow = [round(day["temp"]["max"]) for day in body["daily"]][1:2]
+    current_conditions = [condition["main"] for condition in body["current"]["weather"]][0] # I'd like to return a link to the icon?  or specific font character for font.
+    hi_today = [round(day["temp"]["max"]) for day in body["daily"]][0]
+    lo_today = [round(day["temp"]["min"]) for day in body["daily"]][0]
+    hi_tomorrow = [round(day["temp"]["max"]) for day in body["daily"]][1]
+    lo_tomorrow = [round(day["temp"]["min"]) for day in body["daily"]][1]
 #     conditions_tomorrow = [condition["main"] for condition in body["daily"]][1:2] # don't know how to get tomorrow's conditions
     return current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow
 
@@ -52,35 +51,50 @@ def get_now_playing():
     title = body['title']
     artist = body['artist']
     releaseDate = body['releaseDate']
+#     if releaseDate=none then make it ""
+#     if releaseDate == none:
+#         releaseDate = ""
     playerName = body['playerName']
+    if playerName == "mpd":
+        playerName = "Radio"
+    if playerName == "ShairportSync":
+        playerName = "AirPlay"
+# THere's got to be a case or list translate for this
+# also - if Radio, can we get the channel name?
+# - maybe brute force it from the url
     return title, artist, releaseDate, playerName
 
 #Daily calendar loop
-#    get formatted date
+#    get formatted date and timne
+current_date=get_date() 
+current_time=get_time() # at this time / in this loop for this development exercise
 #    update date section
-current_date=get_date()
-print(current_date)
-
-#1 hour weather loop
-#    Get weather
-#    update weather section
-(current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow)=get_weather()
-print(current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow) # Why are some in brackets, some in quotes?
+# print(current_date) # commented for this dev exercise
+print(current_date, current_time, sep=' - ') # separate time into minute loop after dev
+print()
 
 #1 minute time loop
 #    get formatted time
 #    update time section
-current_time=get_time()
-print(current_time)
+# print(current_time)
+
+#15 minute weather loop#
+#    Get weather
+(current_temp, current_conditions, hi_today, lo_today, hi_tomorrow, lo_tomorrow)=get_weather()
+#    update weather section
+print("Weather")
+print("Current: ", current_temp, "and", current_conditions)
+print("Today: high", hi_today, "low", lo_today)
+print("Tomorrow: high", hi_tomorrow, "low", lo_tomorrow) 
 
 #5 second now playing loop
 #    get now playing
-#    check if new
-# artist, title should be enough 
-#   print(title)
 (title, artist, releaseDate, playerName)=get_now_playing()
-# check for delta in title, artist, if yes, 
-print(title,"|", artist,"|", releaseDate,"|", playerName)
+#    check if new - artist, title should be enough
+# if yes, update song section
+print()
+print(playerName)
+print(title, artist, releaseDate, sep=' | ')
 # if(releaseDate') = "none", releaseDate=""
 
 # example timing and control loop from Pythn turtle clock example

@@ -1,0 +1,17 @@
+HifiBerry 'streamUrl'
+
+Manually added:
+Radio Paradise: 'http://stream.radioparadise.com/flacm'
+RP - Eclectic: 'http://stream.radioparadise.com/world-etc-flacm'
+
+From HFB:
+Linn Jazz: 'http://89.16.185.174:8000/stream'
+Linn Radio: 'http://89.16.185.174:8003/stream'
+101 SMOOTH JAZZ MELLOW MIX: 'http://streaming.live365.com/b48071_128mp3'
+Jazz Radio Bcn: 'http://stream.zeno.fm/tvt6bya8hg8uv'
+Roundandsound Radio: 'http://stream.roundandsound.nl/1'
+Blues Music Fan Radio: 'http://ais-sa2.cdnstream1.com/1992_128.mp3'
+The World of Blues: 'http://ais-sa2.cdnstream1.com/2263_128.mp3'
+Folk Alley - WKSU - HD2: 'https://freshgrass.streamguys1.com/folkalley-128mp3-tunein'
+SOMA FM: Folk Forward: 'http://ice2.somafm.com/folkfwd-128-mp3'
+Irish Folk: 'http://irish-folk.stream.laut.fm/irish-folk?ref=tunein'
